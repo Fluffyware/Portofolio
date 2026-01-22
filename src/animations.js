@@ -9,6 +9,17 @@ export function initAnimations() {
     initNavbarScroll();
     initSmoothScrollLinks();
     initHeroParallax();
+    initMobileMenu();
+}
+
+function initMobileMenu() {
+    const toggle = document.querySelector('.menu-toggle');
+    const nav = document.querySelector('body');
+    if (!toggle) return;
+
+    toggle.addEventListener('click', () => {
+        nav.classList.toggle('nav-active');
+    });
 }
 
 /**
@@ -160,6 +171,9 @@ function initSmoothScrollLinks() {
                 const target = document.querySelector(href);
 
                 if (target) {
+                    // Close mobile menu if open
+                    document.body.classList.remove('nav-active');
+
                     gsap.to(window, {
                         duration: 1.5,
                         scrollTo: {
