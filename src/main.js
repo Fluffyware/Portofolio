@@ -1,5 +1,5 @@
 import './style.css';
-import { projects, education, skills } from './data.js';
+import { projects, skills, services } from './data.js';
 import {
   initAnimations,
   initSmoothScroll
@@ -26,8 +26,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
 function renderContent() {
   renderPortfolio();
-  renderEducation();
   renderSkills();
+  renderServices();
 }
 
 // Digital Studio Portfolio Rendering
@@ -80,6 +80,42 @@ function renderSkills() {
       </div>
     `;
     grid.appendChild(catDiv);
+  });
+}
+
+// Services Journey Rendering
+function renderServices() {
+  const grid = document.getElementById('servicesGrid');
+  if (!grid) return;
+  grid.innerHTML = '';
+
+  services.forEach((service, index) => {
+    const item = document.createElement('div');
+    item.className = 'service-item';
+    item.dataset.index = index;
+
+    const displayIndex = String(index + 1).padStart(2, '0');
+
+    item.innerHTML = `
+      <div class="service-main">
+        <span class="service-number">${displayIndex}</span>
+        <h3 class="service-title">${service.title}</h3>
+        <span class="service-plus">+</span>
+      </div>
+      <div class="service-detail">
+        <div class="service-detail-inner">
+          <p class="service-description">${service.description}</p>
+          <div class="service-tags">
+            <span class="service-tag">BESPOKE</span>
+            <span class="service-tag">DIGITAL</span>
+            <span class="service-tag">2026</span>
+          </div>
+        </div>
+      </div>
+      <div class="service-line"></div>
+    `;
+
+    grid.appendChild(item);
   });
 }
 

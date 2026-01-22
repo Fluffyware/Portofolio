@@ -8,29 +8,59 @@ export const bio = {
 
 export const skills = [
   {
-    category: "Core Tech.",
-    items: ["React / Next.js", "TypeScript", "Node.js", "PostgreSQL"]
+    category: "Languages.",
+    items: ["HTML", "CSS", "JavaScript", "TypeScript"]
   },
   {
-    category: "Visual & Motion.",
-    items: ["GSAP Animation", "Three.js", "Framer Motion", "WebGL"]
+    category: "Frameworks.",
+    items: ["React", "Next.js", "Node.js", "Express"]
+  },
+  {
+    category: "Design & Motion.",
+    items: ["Figma", "Flow", "Nano Banana", "Blender", "Adobe Premiere Pro"]
+  },
+  {
+    category: "Administration.",
+    items: ["Word", "Excel", "PowerPoint"]
   }
 ];
 
-export const education = [
+export const services = [
   {
     id: 1,
-    degree: "Bachelor of Computer Science",
-    school: "University of Indonesia",
-    date: "2020 - 2024",
-    description: "Focus on Web Technologies and Software Engineering. Completed various projects involving modern frontend frameworks and performance optimization."
+    title: "Course Landing Page",
+    description: "High-converting landing pages tailored for online courses and educational platforms.",
+    icon: "🎓"
   },
   {
     id: 2,
-    degree: "Certified Web Developer",
-    school: "Frontend Masters",
-    date: "2023",
-    description: "Intensive training in advanced React patterns, performance, and accessibility."
+    title: "Product Landing Page",
+    description: "Launch your product with a high-impact, persuasive landing page designed to convert visitors into customers.",
+    icon: "📦"
+  },
+  {
+    id: 3,
+    title: "Company Profile",
+    description: "Professional and modern company profile websites to establish your brand's digital presence.",
+    icon: "🏢"
+  },
+  {
+    id: 4,
+    title: "Wedding Invitation",
+    description: "Elegan and interactive digital wedding invitations with RSVP and gallery features.",
+    icon: "💍"
+  },
+  {
+    id: 5,
+    title: "Simple System",
+    description: "Efficient and easy-to-use custom internal systems or basic web applications.",
+    icon: "⚙️"
+  },
+  {
+    id: 6,
+    title: "Event Website",
+    description: "Comprehensive websites for events, conferences, or festivals including registration and schedules.",
+    icon: "🎫"
   }
 ];
 
