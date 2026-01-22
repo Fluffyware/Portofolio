@@ -100,7 +100,6 @@ function renderServices() {
       <div class="service-main">
         <span class="service-number">${displayIndex}</span>
         <h3 class="service-title">${service.title}</h3>
-        <span class="service-plus">+</span>
       </div>
       <div class="service-detail">
         <div class="service-detail-inner">

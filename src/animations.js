@@ -12,166 +12,136 @@ export function initAnimations() {
 }
 
 /**
- * ASYMMETRIC HERO ANIMATIONS
+ * MINIMAL WAVE HERO ANIMATIONS
  */
 function initHeroParallax() {
-    const hero = document.querySelector('.hero-minimal');
-    if (!hero) return;
-
-    const roleLines = document.querySelectorAll('.role-line');
-    const description = document.querySelector('.hero-description-short');
-    const nameCharsLeft = document.querySelectorAll('.name-left .char');
-    const nameCharsRight = document.querySelectorAll('.name-right .char');
-    const scrollIndicator = document.querySelector('.hero-scroll-indicator');
-
-    // Random characters for scramble effect
-    const scrambleChars = '!<>-_\\/[]{}—=+*^?#@$%&ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
-
-    // Scramble animation function
-    function scrambleReveal(charElement, delay) {
-        const originalChar = charElement.textContent;
-        charElement.setAttribute('data-char', originalChar);
-        let iterations = 0;
-        const maxIterations = 8 + Math.floor(Math.random() * 5);
-
-        setTimeout(() => {
-            charElement.classList.add('scrambling');
-
-            const interval = setInterval(() => {
-                charElement.textContent = scrambleChars[Math.floor(Math.random() * scrambleChars.length)];
-                iterations++;
-
-                if (iterations >= maxIterations) {
-                    clearInterval(interval);
-                    charElement.textContent = originalChar;
-                    charElement.classList.remove('scrambling');
-                    charElement.classList.add('revealed');
-                }
-            }, 50);
-        }, delay);
-    }
-
-    // Cinematic Entrance Timeline
-    const tl = gsap.timeline({ defaults: { ease: "expo.out", duration: 1.8 } });
-
-    tl.from(roleLines, {
-        yPercent: 100,
-        opacity: 0,
-        stagger: 0.1,
-        delay: 0.5
-    })
-        .from(description, {
-            opacity: 0,
-            y: 30,
-            duration: 1.5
-        }, "-=1.4")
-        // Animate name characters with scramble effect
-        .add(() => {
-            nameCharsLeft.forEach((char, i) => {
-                scrambleReveal(char, i * 60);
-            });
-        }, "-=0.8")
-        .add(() => {
-            nameCharsRight.forEach((char, i) => {
-                scrambleReveal(char, i * 60);
-            });
-        }, "-=0.3")
-        .from(scrollIndicator, {
-            opacity: 0,
-            y: 20,
-        }, "+=0.5");
-
-    initHeroBackgroundAnimation();
-}
-
-/**
- * PREMIUM FLUID BACKGROUND (CANVAS)
- */
-function initHeroBackgroundAnimation() {
-    const canvas = document.getElementById('hero-canvas');
-    if (!canvas) return;
+    const hero = document.querySelector('.hero-wave');
+    const canvas = document.getElementById('hero-waves');
+    if (!hero || !canvas) return;
 
     const ctx = canvas.getContext('2d');
-    let width, height;
-    let time = 0;
-    const particles = [];
+    const name = document.querySelector('.hero-display-name');
+    const caption = document.querySelector('.hero-caption');
+    const scrollIndicator = document.querySelector('.hero-scroll-indicator');
+
+    let width, height, animationFrame;
+    let increment = 0;
+
+    const waves = [
+        { amplitude: 40, frequency: 0.012, speed: 0.015, color: 'rgba(255, 255, 255, 0.05)' },
+        { amplitude: 60, frequency: 0.008, speed: 0.01, color: 'rgba(255, 255, 255, 0.03)' },
+        { amplitude: 30, frequency: 0.015, speed: 0.02, color: 'rgba(255, 255, 255, 0.02)' }
+    ];
 
     function resize() {
         width = canvas.width = window.innerWidth;
         height = canvas.height = window.innerHeight;
     }
 
-    // Initialize particles for "cooler" effect
-    for (let i = 0; i < 60; i++) {
-        particles.push({
-            x: Math.random() * window.innerWidth,
-            y: Math.random() * window.innerHeight,
-            size: Math.random() * 2,
-            speedX: (Math.random() - 0.5) * 0.5,
-            speedY: (Math.random() - 0.5) * 0.5,
-            opacity: Math.random() * 0.5
-        });
-    }
+    function drawWave(amplitude, frequency, speed, color) {
+        ctx.beginPath();
+        ctx.moveTo(0, height / 2);
 
-    function draw() {
-        ctx.clearRect(0, 0, width, height);
-
-        // Deep dark background
-        ctx.fillStyle = '#0a0a0a';
-        ctx.fillRect(0, 0, width, height);
-
-        // Soft atmospheric glow
-        const gradient = ctx.createRadialGradient(
-            width / 2 + Math.cos(time * 0.0005) * 300,
-            height / 2 + Math.sin(time * 0.0005) * 300,
-            0,
-            width / 2,
-            height / 2,
-            width * 0.8
-        );
-        gradient.addColorStop(0, 'rgba(30, 30, 40, 0.4)');
-        gradient.addColorStop(1, 'rgba(10, 10, 10, 0)');
-        ctx.fillStyle = gradient;
-        ctx.fillRect(0, 0, width, height);
-
-        // Draw Waves
-        ctx.strokeStyle = 'rgba(255, 255, 255, 0.04)';
-        ctx.lineWidth = 1;
-        for (let i = 0; i < 4; i++) {
-            ctx.beginPath();
-            ctx.moveTo(0, height * 0.3 + i * 120);
-            for (let x = 0; x < width; x += 20) {
-                const y = height * 0.3 + i * 120 + Math.sin(x * 0.001 + time * 0.0005 + i) * 60;
-                ctx.lineTo(x, y);
-            }
-            ctx.stroke();
+        for (let i = 0; i < width; i++) {
+            const y = height / 2 + Math.sin(i * frequency + increment * speed) * amplitude;
+            ctx.lineTo(i, y);
         }
 
-        // Draw and update particles
-        ctx.fillStyle = 'rgba(255, 255, 255, 0.3)';
-        particles.forEach(p => {
-            p.x += p.speedX;
-            p.y += p.speedY;
+        ctx.strokeStyle = color;
+        ctx.lineWidth = 1;
+        ctx.stroke();
+    }
 
-            if (p.x < 0) p.x = width;
-            if (p.x > width) p.x = 0;
-            if (p.y < 0) p.y = height;
-            if (p.y > height) p.y = 0;
+    function animate() {
+        ctx.clearRect(0, 0, width, height);
+        increment += 1;
 
-            ctx.globalAlpha = p.opacity;
-            ctx.beginPath();
-            ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
-            ctx.fill();
-        });
-        ctx.globalAlpha = 1;
-
-        time += 16;
-        requestAnimationFrame(draw);
+        waves.forEach(w => drawWave(w.amplitude, w.frequency, w.speed, w.color));
+        animationFrame = requestAnimationFrame(animate);
     }
 
     window.addEventListener('resize', resize);
     resize();
-    draw();
+    animate();
+
+    // 2. Simple Entrance Animation
+    const tl = gsap.timeline({ defaults: { ease: "power3.out", duration: 1.5 } });
+    const buttons = document.querySelectorAll('.hero-btn');
+
+    tl.from([name, caption], {
+        opacity: 0,
+        y: 40,
+        stagger: 0.2,
+        delay: 0.5
+    })
+        .from(buttons, {
+            opacity: 0,
+            y: 20,
+            stagger: 0.1,
+            duration: 1
+        }, "-=1")
+        .from(scrollIndicator, {
+            opacity: 0,
+            y: 20
+        }, "-=1");
+
+    // 3. Magnetic Buttons Logic
+    buttons.forEach(btn => {
+        btn.addEventListener('mousemove', (e) => {
+            const rect = btn.getBoundingClientRect();
+            const x = e.clientX - rect.left - rect.width / 2;
+            const y = e.clientY - rect.top - rect.height / 2;
+
+            gsap.to(btn, {
+                x: x * 0.3,
+                y: y * 0.3,
+                duration: 0.6,
+                ease: "power2.out"
+            });
+
+            gsap.to(btn.querySelector('.btn-text'), {
+                x: x * 0.15,
+                y: y * 0.15,
+                duration: 0.6,
+                ease: "power2.out"
+            });
+        });
+
+        btn.addEventListener('mouseleave', () => {
+            gsap.to([btn, btn.querySelector('.btn-text')], {
+                x: 0,
+                y: 0,
+                duration: 0.6,
+                ease: "elastic.out(1, 0.3)"
+            });
+        });
+    });
+
+    // 3. Mouse Parallax Effect
+    hero.addEventListener('mousemove', (e) => {
+        const { clientX, clientY } = e;
+        const xPos = (clientX / window.innerWidth - 0.5) * 40;
+        const yPos = (clientY / window.innerHeight - 0.5) * 40;
+
+        gsap.to('.hero-center-content', {
+            x: xPos,
+            y: yPos,
+            duration: 1,
+            ease: "power2.out"
+        });
+
+        gsap.to('.hero-grid-bg', {
+            x: xPos * 0.5,
+            y: yPos * 0.5,
+            duration: 1.5,
+            ease: "power2.out"
+        });
+    });
+}
+
+function initHeroBackgroundAnimation() {
+    // Canvas background removed in favor of CSS Grid + GSAP mouse parallax in initHeroParallax
+    return;
 }
 
 /**
