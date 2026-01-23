@@ -16,7 +16,7 @@ export const skills = [
     items: ["React", "Next.js", "Node.js", "Express"]
   },
   {
-    category: "Design & Motion.",
+    category: "Design.",
     items: ["Figma", "Flow", "Nano Banana", "Blender", "Adobe Premiere Pro"]
   },
   {
