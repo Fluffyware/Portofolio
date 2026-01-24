@@ -67,20 +67,27 @@ export const services = [
 export const projects = [
   {
     id: 1,
+    title: "TAKA HYDROCORE",
+    description: "Professional company profile website for a premier maritime support company, showcasing their fleet including the SS Barakuda vessel and comprehensive offshore logistics services.",
+    link: "https://project-taka.vercel.app/index.html",
+    image: "https://images.unsplash.com/photo-1544551763-46a013bb70d5?auto=format&fit=crop&q=80"
+  },
+  {
+    id: 2,
     title: "Lumina Studio",
     description: "A creative visual experience for a high-end design agency, focusing on immersive 3D interactions and smooth editorial transitions.",
     link: "#",
     image: "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&q=80"
   },
   {
-    id: 2,
+    id: 3,
     title: "Void Platform",
     description: "A decentralized financial dashboard with a brutalist aesthetic, featuring real-time data visualization and complex state management.",
     link: "#",
     image: "https://images.unsplash.com/photo-1634017839464-5c339ebe3cb4?auto=format&fit=crop&q=80"
   },
   {
-    id: 3,
+    id: 4,
     title: "Cyber Pulse",
     description: "An experimental audio-visual interface exploring the intersection of digital signal processing and generative art.",
     link: "#",
