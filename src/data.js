@@ -70,7 +70,7 @@ export const projects = [
     title: "TAKA HYDROCORE",
     description: "Professional company profile website for a premier maritime support company, showcasing their fleet including the SS Barakuda vessel and comprehensive offshore logistics services.",
     link: "https://project-taka.vercel.app/index.html",
-    image: "https://images.unsplash.com/photo-1544551763-46a013bb70d5?auto=format&fit=crop&q=80"
+    image: "/assets/taka-hydrocore.png"
   },
   {
     id: 2,

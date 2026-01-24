@@ -47,7 +47,7 @@ function renderPortfolio() {
       <div class="project-info">
         <h3 class="project-title">${project.title}</h3>
         <p class="project-description">${project.description}</p>
-        <a href="${project.link}" class="project-link">Visit Website <span class="arrow">→</span></a>
+        <a href="${project.link}" class="project-link" target="_blank" rel="noopener noreferrer">Visit Website <span class="arrow">→</span></a>
       </div>
     `;
 
