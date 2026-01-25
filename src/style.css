@@ -581,6 +581,12 @@ section {
 }
 
 /* Unique Services Section - Industrial List */
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0 var(--space-xl);
+}
+
 .service-item {
   position: relative;
   cursor: pointer;
@@ -615,6 +621,11 @@ section {
 }
 
 
+.service-detail {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.6s var(--ease-out);
+}
 
 .service-detail-inner {
   padding: var(--space-m) 0 var(--space-s) var(--space-3xl);
@@ -691,6 +702,11 @@ section {
 
   .service-title {
     font-size: 2.5rem;
+  }
+
+  .services-grid {
+    grid-template-columns: 1fr;
+    gap: 0;
   }
 }
 
