@@ -28,19 +28,19 @@ export const skills = [
 export const education = [
   {
     id: 1,
-    degree: "Sarjana Informatika (S1)",
-    institution: "Universitas Telkom",
+    degree: "Bachelor of Informatics (S1)",
+    institution: "Telkom University",
     location: "Bandung, Indonesia",
-    gpa: "IPK: 3.27 of 4.00",
+    gpa: "GPA: 3.27 of 4.00",
     period: "Sep 2020 – Oct 2022",
-    icon: "�"
+    icon: "🎓"
   },
   {
     id: 2,
-    degree: "IPA",
+    degree: "Science Major",
     institution: "SMA Negeri 1 Balikpapan",
     location: "Balikpapan, Indonesia",
-    period: "Jul 2017 – Agu 2020",
+    period: "Jul 2017 – Aug 2020",
     icon: "📚"
   }
 ];
@@ -49,14 +49,14 @@ export const projects = [
   {
     id: 1,
     title: "Isidapur.ai",
-    description: "Retro kitchen assistant yang membantu mencari resep masakan berdasarkan bahan yang tersedia di dapur Anda. Menggunakan AI untuk memberikan rekomendasi masakan yang cerdas dan kreatif.",
+    description: "A retro kitchen assistant that helps you find recipes based on ingredients available in your kitchen. Uses AI to provide smart and creative cooking recommendations.",
     link: "https://isidapur-ai.vercel.app/",
     image: "/assets/isidapur.png"
   },
   {
     id: 2,
     title: "Rebusan°",
-    description: "Landing page premium untuk usaha makanan sehat 'Rebusan°', menampilkan estetika minimalis dengan tipografi elegan dan fokus pada nutrisi murni.",
+    description: "Premium landing page for healthy food business 'Rebusan°', featuring minimalist aesthetics with elegant typography and focus on pure nutrition.",
     link: "rebusan.html",
     image: "/assets/rebusan.png"
   },
@@ -70,7 +70,7 @@ export const projects = [
   {
     id: 4,
     title: "BantuTugas",
-    description: "Platform kolaboratif untuk posting tugas dan mendapatkan bantuan dari komunitas. Sistem pembayaran terintegrasi dengan Xendit memungkinkan pengguna mendapatkan kompensasi atas bantuan yang diberikan.",
+    description: "Collaborative platform for posting assignments and getting help from the community. Integrated payment system with Xendit allows users to receive compensation for assistance provided.",
     link: "https://bantutugas-xi.vercel.app/",
     image: "/assets/bantutugas.png"
   }
