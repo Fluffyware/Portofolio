@@ -83,34 +83,53 @@ function renderSkills() {
   });
 }
 
-// Education Journey Rendering
+// Education Journey Rendering with Timeline
 function renderEducation() {
   const grid = document.getElementById('educationGrid');
   if (!grid) return;
   grid.innerHTML = '';
 
-  education.forEach((edu, index) => {
+  // Create timeline container
+  const timeline = document.createElement('div');
+  timeline.className = 'education-timeline';
+
+  // Reverse the education array so high school is first (bottom to top visually)
+  const reversedEducation = [...education].reverse();
+
+  reversedEducation.forEach((edu, index) => {
     const item = document.createElement('div');
-    item.className = 'education-item';
+    item.className = 'timeline-item';
     item.dataset.index = index;
 
-    const displayIndex = String(index + 1).padStart(2, '0');
-
     item.innerHTML = `
-      <div class="education-main">
-        <span class="education-number">${displayIndex}</span>
-        <div class="education-info">
-          <h3 class="education-degree">${edu.degree}</h3>
-          <p class="education-institution">${edu.institution} | ${edu.location}</p>
-          ${edu.gpa ? `<p class="education-gpa">${edu.gpa}</p>` : ''}
-          <p class="education-period">${edu.period}</p>
-        </div>
+      <div class="timeline-dot">
+        <div class="timeline-dot-inner"></div>
+        <div class="timeline-pulse"></div>
       </div>
-      <div class="education-line"></div>
+      <div class="timeline-content">
+        <div class="timeline-period">${edu.period}</div>
+        <h3 class="timeline-degree">${edu.degree}</h3>
+        <p class="timeline-institution">${edu.institution}</p>
+        <p class="timeline-location">${edu.location}</p>
+        ${edu.gpa ? `<p class="timeline-gpa">${edu.gpa}</p>` : ''}
+      </div>
     `;
 
-    grid.appendChild(item);
+    timeline.appendChild(item);
   });
+
+  // Add animated line with continuous looping light
+  const animatedLine = document.createElement('div');
+  animatedLine.className = 'timeline-line';
+  animatedLine.innerHTML = `
+    <div class="timeline-line-progress"></div>
+    <div class="timeline-light"></div>
+  `;
+  timeline.appendChild(animatedLine);
+
+  grid.appendChild(timeline);
 }
+
+
 
 
