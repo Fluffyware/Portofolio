@@ -718,15 +718,19 @@ section {
   padding: var(--space-3xl) 0;
   pointer-events: none;
   /* Disable hover on the entire timeline */
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
 }
 
 .timeline-item {
   position: relative;
-  display: inline-flex;
+  display: flex;
   flex-direction: column;
   align-items: center;
   gap: var(--space-m);
-  width: 50%;
+  width: 40%;
+  /* Reduced from 50% for more spacing */
   opacity: 0;
   transform: translateY(30px);
   animation: slideInTimeline 0.8s ease forwards;
@@ -767,30 +771,9 @@ section {
   transition: all 0.4s ease;
 }
 
+/* Remove pulse animation - it was creating the second light */
 .timeline-pulse {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 28px;
-  height: 28px;
-  border-radius: 50%;
-  background: rgba(255, 255, 255, 0.3);
-  animation: pulse 2s ease-in-out infinite;
-}
-
-@keyframes pulse {
-
-  0%,
-  100% {
-    transform: translate(-50%, -50%) scale(1);
-    opacity: 0.5;
-  }
-
-  50% {
-    transform: translate(-50%, -50%) scale(2);
-    opacity: 0;
-  }
+  display: none;
 }
 
 /* Disable hover effects - animation will handle the glow */
@@ -857,8 +840,10 @@ section {
 /* Horizontal Timeline Line */
 .timeline-line {
   position: absolute;
-  left: 25%;
-  right: 25%;
+  left: 20%;
+  /* Adjusted for new spacing */
+  right: 20%;
+  /* Adjusted for new spacing */
   top: 13px;
   /* Center with dots (28px / 2 - 1px) */
   height: 2px;
@@ -867,7 +852,7 @@ section {
   overflow: visible;
 }
 
-/* Continuous Looping Light Animation - Horizontal */
+/* ONLY ONE Light Animation - Horizontal */
 .timeline-light {
   position: absolute;
   left: 0%;
@@ -1043,9 +1028,15 @@ section {
 }
 
 @media (max-width: 768px) {
+  .education-timeline {
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-2xl);
+  }
+
   .timeline-item {
     width: 100%;
-    margin-bottom: var(--space-xl);
+    margin-bottom: 0;
   }
 
   .timeline-degree {
@@ -1058,18 +1049,13 @@ section {
   }
 
   .timeline-line {
-    left: 15%;
-    right: 15%;
-    top: 11px;
+    display: none;
+    /* Hide line on mobile for vertical layout */
   }
 
   .timeline-light {
-    width: 16px;
-    height: 16px;
-  }
-
-  .timeline-light::before {
-    width: 60px;
+    display: none;
+    /* Hide light on mobile */
   }
 }
 
