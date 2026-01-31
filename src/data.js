@@ -13,7 +13,7 @@ export const skills = [
   },
   {
     category: "Frameworks.",
-    items: ["React", "Next.js", "Node.js", "Express"]
+    items: ["React", "Next.js", "Laravel"]
   },
   {
     category: "Design.",

@@ -83,7 +83,7 @@ function renderSkills() {
   });
 }
 
-// Education Journey Rendering - Simple Horizontal Layout
+// Education Rendering - Modern Minimalist Design
 function renderEducation() {
   const grid = document.getElementById('educationGrid');
   if (!grid) return;
@@ -93,22 +93,18 @@ function renderEducation() {
   const timeline = document.createElement('div');
   timeline.className = 'education-timeline';
 
-  // For horizontal timeline, keep natural order (SMA on left, Kuliah on right)
   education.forEach((edu, index) => {
     const item = document.createElement('div');
     item.className = 'timeline-item';
     item.dataset.index = index;
 
     item.innerHTML = `
-      <div class="timeline-dot">
-        <div class="timeline-dot-inner"></div>
-      </div>
+      <div class="timeline-period">${edu.period}</div>
       <div class="timeline-content">
-        <div class="timeline-period">${edu.period}</div>
         <h3 class="timeline-degree">${edu.degree}</h3>
         <p class="timeline-institution">${edu.institution}</p>
         <p class="timeline-location">${edu.location}</p>
-        ${edu.gpa ? `<p class="timeline-gpa">${edu.gpa}</p>` : ''}
+        ${edu.gpa ? `<div class="timeline-gpa">${edu.gpa}</div>` : ''}
       </div>
     `;
 
@@ -117,4 +113,5 @@ function renderEducation() {
 
   grid.appendChild(timeline);
 }
+
 
