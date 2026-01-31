@@ -1,5 +1,5 @@
 import './style.css';
-import { projects, skills, services } from './data.js';
+import { projects, skills, education } from './data.js';
 import {
   initAnimations,
   initSmoothScroll
@@ -27,7 +27,7 @@ document.addEventListener('DOMContentLoaded', () => {
 function renderContent() {
   renderPortfolio();
   renderSkills();
-  renderServices();
+  renderEducation();
 }
 
 // Digital Studio Portfolio Rendering
@@ -83,59 +83,34 @@ function renderSkills() {
   });
 }
 
-// Services Journey Rendering
-function renderServices() {
-  const grid = document.getElementById('servicesGrid');
+// Education Journey Rendering
+function renderEducation() {
+  const grid = document.getElementById('educationGrid');
   if (!grid) return;
   grid.innerHTML = '';
 
-  services.forEach((service, index) => {
+  education.forEach((edu, index) => {
     const item = document.createElement('div');
-    item.className = 'service-item';
+    item.className = 'education-item';
     item.dataset.index = index;
 
     const displayIndex = String(index + 1).padStart(2, '0');
 
     item.innerHTML = `
-      <div class="service-main">
-        <span class="service-number">${displayIndex}</span>
-        <h3 class="service-title">${service.title}</h3>
-      </div>
-      <div class="service-detail">
-        <div class="service-detail-inner">
-          <p class="service-description">${service.description}</p>
-          <div class="service-tags">
-            <span class="service-tag">BESPOKE</span>
-            <span class="service-tag">DIGITAL</span>
-            <span class="service-tag">2026</span>
-          </div>
+      <div class="education-main">
+        <span class="education-number">${displayIndex}</span>
+        <div class="education-info">
+          <h3 class="education-degree">${edu.degree}</h3>
+          <p class="education-institution">${edu.institution} | ${edu.location}</p>
+          ${edu.gpa ? `<p class="education-gpa">${edu.gpa}</p>` : ''}
+          <p class="education-period">${edu.period}</p>
         </div>
       </div>
-      <div class="service-line"></div>
+      <div class="education-line"></div>
     `;
 
     grid.appendChild(item);
   });
 }
 
-// Education Journey Rendering
-function renderEducation() {
-  const list = document.getElementById('education-list');
-  if (!list) return;
 
-  education.forEach(item => {
-    const row = document.createElement('div');
-    row.className = 'cv-item';
-
-    row.innerHTML = `
-      <div class="cv-year">${item.date}</div>
-      <div class="cv-info">
-        <h3>${item.degree}</h3>
-        <span style="color: #ffffff; font-weight: 700; letter-spacing: 0.1em; font-size: 0.8rem; border-bottom: 1px solid #333; padding-bottom: 4px;">${item.school}</span>
-        <p style="margin-top: 1.5rem; color: #888;">${item.description}</p>
-      </div>
-    `;
-
-    list.appendChild(row);
-  });
-}

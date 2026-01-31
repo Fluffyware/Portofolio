@@ -25,42 +25,23 @@ export const skills = [
   }
 ];
 
-export const services = [
+export const education = [
   {
     id: 1,
-    title: "Course Landing Page",
-    description: "High-converting landing pages tailored for online courses and educational platforms.",
-    icon: "🎓"
+    degree: "Sarjana Informatika (S1)",
+    institution: "Universitas Telkom",
+    location: "Bandung, Indonesia",
+    gpa: "IPK: 3.27 of 4.00",
+    period: "Sep 2020 – Oct 2022",
+    icon: "�"
   },
   {
     id: 2,
-    title: "Product Landing Page",
-    description: "Launch your product with a high-impact, persuasive landing page designed to convert visitors into customers.",
-    icon: "📦"
-  },
-  {
-    id: 3,
-    title: "Company Profile",
-    description: "Professional and modern company profile websites to establish your brand's digital presence.",
-    icon: "🏢"
-  },
-  {
-    id: 4,
-    title: "Wedding Invitation",
-    description: "Elegan and interactive digital wedding invitations with RSVP and gallery features.",
-    icon: "💍"
-  },
-  {
-    id: 5,
-    title: "Simple System",
-    description: "Efficient and easy-to-use custom internal systems or basic web applications.",
-    icon: "⚙️"
-  },
-  {
-    id: 6,
-    title: "Event Website",
-    description: "Comprehensive websites for events, conferences, or festivals including registration and schedules.",
-    icon: "🎫"
+    degree: "IPA",
+    institution: "SMA Negeri 1 Balikpapan",
+    location: "Balikpapan, Indonesia",
+    period: "Jul 2017 – Agu 2020",
+    icon: "📚"
   }
 ];
 
