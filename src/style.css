@@ -710,16 +710,15 @@ section {
   }
 }
 
-/* Education Timeline Section - Horizontal */
+/* Education Section - Simple Horizontal Layout */
 .education-timeline {
   position: relative;
   max-width: 1200px;
   margin: 0 auto;
   padding: var(--space-3xl) 0;
-  pointer-events: none;
-  /* Disable hover on the entire timeline */
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
+  gap: var(--space-3xl);
   align-items: flex-start;
 }
 
@@ -730,7 +729,6 @@ section {
   align-items: center;
   gap: var(--space-m);
   width: 40%;
-  /* Reduced from 50% for more spacing */
   opacity: 0;
   transform: translateY(30px);
   animation: slideInTimeline 0.8s ease forwards;
@@ -757,7 +755,6 @@ section {
   height: 28px;
   flex-shrink: 0;
   z-index: 2;
-  order: 1;
 }
 
 .timeline-dot-inner {
@@ -768,23 +765,14 @@ section {
   border-radius: 50%;
   position: relative;
   z-index: 2;
-  transition: all 0.4s ease;
 }
 
-/* Remove pulse animation - it was creating the second light */
 .timeline-pulse {
   display: none;
 }
 
-/* Disable hover effects - animation will handle the glow */
-.timeline-item:hover .timeline-dot-inner {
-  background: var(--color-bg);
-  box-shadow: none;
-}
-
 .timeline-content {
   text-align: center;
-  order: 2;
   max-width: 400px;
 }
 
@@ -804,13 +792,6 @@ section {
   letter-spacing: -0.02em;
   margin: 0 0 var(--space-xs) 0;
   line-height: 1.1;
-  transition: all 0.3s ease;
-}
-
-/* Disable hover effect on degree */
-.timeline-item:hover .timeline-degree {
-  color: inherit;
-  text-shadow: none;
 }
 
 .timeline-institution {
@@ -837,192 +818,19 @@ section {
   border-radius: 4px;
 }
 
-/* Horizontal Timeline Line */
+/* Hide timeline line and light */
 .timeline-line {
-  position: absolute;
-  left: 20%;
-  /* Adjusted for new spacing */
-  right: 20%;
-  /* Adjusted for new spacing */
-  top: 13px;
-  /* Center with dots (28px / 2 - 1px) */
-  height: 2px;
-  background: rgba(255, 255, 255, 0.15);
-  z-index: 1;
-  overflow: visible;
+  display: none;
 }
 
-/* ONLY ONE Light Animation - Horizontal */
 .timeline-light {
-  position: absolute;
-  left: 0%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-  width: 20px;
-  height: 20px;
-  background: white;
-  border-radius: 50%;
-  box-shadow:
-    0 0 30px 8px rgba(255, 255, 255, 0.9),
-    0 0 50px 12px rgba(255, 255, 255, 0.6),
-    0 0 80px 16px rgba(255, 255, 255, 0.3);
-  animation: travelLightHorizontal 10s ease-in-out infinite;
-  z-index: 3;
+  display: none;
 }
 
-/* Light Trail Effect - Horizontal */
-.timeline-light::before {
-  content: '';
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 80px;
-  height: 4px;
-  background: linear-gradient(to right,
-      rgba(255, 255, 255, 0),
-      rgba(255, 255, 255, 0.8),
-      rgba(255, 255, 255, 0.4));
-  filter: blur(4px);
-  opacity: 0.8;
-}
-
-/* Smooth Horizontal Light Travel Animation with Pauses */
-@keyframes travelLightHorizontal {
-
-  /* Start - fade in from left */
-  0% {
-    left: -5%;
-    opacity: 0;
-  }
-
-  /* Arrive at SMA (left - 0%) */
-  10% {
-    left: 0%;
-    opacity: 1;
-    box-shadow:
-      0 0 40px 12px rgba(255, 255, 255, 1),
-      0 0 70px 18px rgba(255, 255, 255, 0.9),
-      0 0 100px 24px rgba(255, 255, 255, 0.6);
-  }
-
-  /* Pause at SMA - glow effect */
-  12%,
-  28% {
-    left: 0%;
-    opacity: 1;
-    box-shadow:
-      0 0 50px 15px rgba(255, 255, 255, 1),
-      0 0 80px 20px rgba(255, 255, 255, 0.95),
-      0 0 120px 28px rgba(255, 255, 255, 0.7);
-  }
-
-  /* Start traveling to Kuliah */
-  30% {
-    left: 0%;
-    opacity: 1;
-  }
-
-  /* Arrive at Kuliah (right - 100%) */
-  58% {
-    left: 100%;
-    opacity: 1;
-    box-shadow:
-      0 0 40px 12px rgba(255, 255, 255, 1),
-      0 0 70px 18px rgba(255, 255, 255, 0.9),
-      0 0 100px 24px rgba(255, 255, 255, 0.6);
-  }
-
-  /* Pause at Kuliah - glow effect */
-  60%,
-  78% {
-    left: 100%;
-    opacity: 1;
-    box-shadow:
-      0 0 50px 15px rgba(255, 255, 255, 1),
-      0 0 80px 20px rgba(255, 255, 255, 0.95),
-      0 0 120px 28px rgba(255, 255, 255, 0.7);
-  }
-
-  /* Fade out */
-  80% {
-    left: 100%;
-    opacity: 1;
-  }
-
-  88% {
-    left: 105%;
-    opacity: 0;
-  }
-
-  /* Reset to start */
-  100% {
-    left: -5%;
-    opacity: 0;
-  }
-}
-
-/* Dot Glow Animation - synced with light pauses */
-.timeline-item:nth-child(1) .timeline-dot-inner {
-  animation: dotGlowFirst 10s ease-in-out infinite;
-}
-
-.timeline-item:nth-child(2) .timeline-dot-inner {
-  animation: dotGlowSecond 10s ease-in-out infinite;
-}
-
-@keyframes dotGlowFirst {
-
-  0%,
-  9% {
-    background: var(--color-bg);
-    box-shadow: none;
-  }
-
-  10%,
-  28% {
-    background: white;
-    box-shadow:
-      0 0 25px rgba(255, 255, 255, 0.9),
-      0 0 45px rgba(255, 255, 255, 0.6);
-  }
-
-  29%,
-  100% {
-    background: var(--color-bg);
-    box-shadow: none;
-  }
-}
-
-@keyframes dotGlowSecond {
-
-  0%,
-  57% {
-    background: var(--color-bg);
-    box-shadow: none;
-  }
-
-  58%,
-  78% {
-    background: white;
-    box-shadow:
-      0 0 25px rgba(255, 255, 255, 0.9),
-      0 0 45px rgba(255, 255, 255, 0.6);
-  }
-
-  79%,
-  100% {
-    background: var(--color-bg);
-    box-shadow: none;
-  }
-}
-
-/* Progress Line - removed */
 .timeline-line-progress {
   display: none;
 }
 
-/* Remove arrow */
 .timeline-arrow {
   display: none;
 }
@@ -1036,7 +844,6 @@ section {
 
   .timeline-item {
     width: 100%;
-    margin-bottom: 0;
   }
 
   .timeline-degree {
@@ -1047,18 +854,7 @@ section {
     width: 24px;
     height: 24px;
   }
-
-  .timeline-line {
-    display: none;
-    /* Hide line on mobile for vertical layout */
-  }
-
-  .timeline-light {
-    display: none;
-    /* Hide light on mobile */
-  }
 }
-
 
 
 /* Footer */

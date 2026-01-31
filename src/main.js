@@ -83,7 +83,7 @@ function renderSkills() {
   });
 }
 
-// Education Journey Rendering with Horizontal Timeline
+// Education Journey Rendering - Simple Horizontal Layout
 function renderEducation() {
   const grid = document.getElementById('educationGrid');
   if (!grid) return;
@@ -102,7 +102,6 @@ function renderEducation() {
     item.innerHTML = `
       <div class="timeline-dot">
         <div class="timeline-dot-inner"></div>
-        <div class="timeline-pulse"></div>
       </div>
       <div class="timeline-content">
         <div class="timeline-period">${edu.period}</div>
@@ -116,13 +115,6 @@ function renderEducation() {
     timeline.appendChild(item);
   });
 
-  // Add animated line with continuous looping light
-  const animatedLine = document.createElement('div');
-  animatedLine.className = 'timeline-line';
-  animatedLine.innerHTML = `
-    <div class="timeline-light"></div>
-  `;
-  timeline.appendChild(animatedLine);
-
   grid.appendChild(timeline);
 }
+
