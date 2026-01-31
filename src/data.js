@@ -21,7 +21,7 @@ export const skills = [
   },
   {
     category: "Administration.",
-    items: ["Word", "Excel", "PowerPoint"]
+    items: ["Word", "Excel", "PowerPoint", "Outlook"]
   }
 ];
 
