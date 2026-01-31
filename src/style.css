@@ -716,13 +716,16 @@ section {
   max-width: 900px;
   margin: 0 auto;
   padding: var(--space-2xl) 0;
+  pointer-events: none;
+  /* Disable hover on the entire timeline */
 }
 
 .timeline-item {
   position: relative;
   display: flex;
   gap: var(--space-xl);
-  margin-bottom: var(--space-3xl);
+  margin-bottom: var(--space-2xl);
+  /* Reduced spacing */
   opacity: 0;
   transform: translateX(-30px);
   animation: slideInTimeline 0.8s ease forwards;
@@ -770,7 +773,6 @@ section {
   transform: translate(-50%, -50%);
   width: 24px;
   height: 24px;
-  border-radius: 50%;
   background: rgba(255, 255, 255, 0.3);
   animation: pulse 2s ease-in-out infinite;
 }
@@ -789,9 +791,10 @@ section {
   }
 }
 
+/* Disable hover effects - animation will handle the glow */
 .timeline-item:hover .timeline-dot-inner {
-  background: white;
-  box-shadow: 0 0 20px rgba(255, 255, 255, 0.6);
+  background: var(--color-bg);
+  box-shadow: none;
 }
 
 .timeline-content {
@@ -818,9 +821,10 @@ section {
   transition: all 0.3s ease;
 }
 
+/* Disable hover effect on degree */
 .timeline-item:hover .timeline-degree {
-  color: white;
-  text-shadow: 0 0 30px rgba(255, 255, 255, 0.3);
+  color: inherit;
+  text-shadow: none;
 }
 
 .timeline-institution {
@@ -847,19 +851,23 @@ section {
   border-radius: 4px;
 }
 
-/* Animated Timeline Line - Static Background */
+/* Animated Timeline Line - Shorter */
 .timeline-line {
   position: absolute;
   left: 11px;
-  top: 0;
-  bottom: 0;
+  top: 32px;
+  /* Start below first dot */
+  bottom: calc(100% - 100% + 32px);
+  /* End above last dot */
+  height: calc(100% - 64px);
+  /* Shortened to fit between dots */
   width: 2px;
   background: rgba(255, 255, 255, 0.15);
   z-index: 1;
   overflow: visible;
 }
 
-/* Continuous Looping Light Animation */
+/* Continuous Looping Light Animation with Pauses */
 .timeline-light {
   position: absolute;
   left: 50%;
@@ -873,7 +881,7 @@ section {
     0 0 30px 8px rgba(255, 255, 255, 0.9),
     0 0 50px 12px rgba(255, 255, 255, 0.6),
     0 0 80px 16px rgba(255, 255, 255, 0.3);
-  animation: travelLight 4s ease-in-out infinite;
+  animation: travelLightWithPause 8s ease-in-out infinite;
   z-index: 3;
 }
 
@@ -894,69 +902,140 @@ section {
   opacity: 0.8;
 }
 
-/* Light Travel Animation - Continuous Loop */
-@keyframes travelLight {
+/* Light Travel Animation with Pauses at Each Point */
+@keyframes travelLightWithPause {
+
+  /* Start - fade in */
   0% {
+    top: -5%;
+    opacity: 0;
+  }
+
+  /* Arrive at SMA (top) */
+  8% {
     top: 0%;
-    opacity: 0;
+    opacity: 1;
     box-shadow:
-      0 0 20px 6px rgba(255, 255, 255, 0.7),
-      0 0 40px 10px rgba(255, 255, 255, 0.4),
-      0 0 60px 14px rgba(255, 255, 255, 0.2);
+      0 0 40px 12px rgba(255, 255, 255, 1),
+      0 0 70px 18px rgba(255, 255, 255, 0.9),
+      0 0 100px 24px rgba(255, 255, 255, 0.6);
   }
 
-  10% {
+  /* Pause at SMA - glow effect */
+  12%,
+  28% {
+    top: 0%;
+    opacity: 1;
+    box-shadow:
+      0 0 50px 15px rgba(255, 255, 255, 1),
+      0 0 80px 20px rgba(255, 255, 255, 0.95),
+      0 0 120px 28px rgba(255, 255, 255, 0.7);
+  }
+
+  /* Travel to Kuliah */
+  32% {
+    top: 0%;
     opacity: 1;
   }
 
-  50% {
-    box-shadow:
-      0 0 40px 10px rgba(255, 255, 255, 1),
-      0 0 70px 16px rgba(255, 255, 255, 0.8),
-      0 0 100px 20px rgba(255, 255, 255, 0.5);
-  }
-
-  90% {
-    opacity: 1;
-  }
-
-  100% {
+  58% {
     top: 100%;
-    opacity: 0;
+    opacity: 1;
     box-shadow:
-      0 0 20px 6px rgba(255, 255, 255, 0.7),
-      0 0 40px 10px rgba(255, 255, 255, 0.4),
-      0 0 60px 14px rgba(255, 255, 255, 0.2);
+      0 0 40px 12px rgba(255, 255, 255, 1),
+      0 0 70px 18px rgba(255, 255, 255, 0.9),
+      0 0 100px 24px rgba(255, 255, 255, 0.6);
   }
-}
 
-/* Progress Line that follows the light */
-.timeline-line-progress {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 0;
-  background: linear-gradient(to bottom,
-      rgba(255, 255, 255, 0.2),
-      rgba(255, 255, 255, 0.5),
-      rgba(255, 255, 255, 0.8));
-  animation: progressGrow 4s ease-in-out infinite;
-}
+  /* Pause at Kuliah - glow effect */
+  62%,
+  78% {
+    top: 100%;
+    opacity: 1;
+    box-shadow:
+      0 0 50px 15px rgba(255, 255, 255, 1),
+      0 0 80px 20px rgba(255, 255, 255, 0.95),
+      0 0 120px 28px rgba(255, 255, 255, 0.7);
+  }
 
-@keyframes progressGrow {
-  0% {
-    height: 0%;
-    opacity: 0.5;
+  /* Fade out and reset */
+  82% {
+    top: 100%;
+    opacity: 1;
+  }
+
+  88% {
+    top: 105%;
+    opacity: 0;
   }
 
   100% {
-    height: 100%;
-    opacity: 0.3;
+    top: -5%;
+    opacity: 0;
   }
 }
 
-/* Remove arrow - we only want the light */
+/* Dot Glow Animation - synced with light pauses */
+.timeline-item:nth-child(1) .timeline-dot-inner {
+  animation: dotGlowFirst 8s ease-in-out infinite;
+}
+
+.timeline-item:nth-child(2) .timeline-dot-inner {
+  animation: dotGlowSecond 8s ease-in-out infinite;
+}
+
+@keyframes dotGlowFirst {
+
+  0%,
+  7% {
+    background: var(--color-bg);
+    box-shadow: none;
+  }
+
+  8%,
+  28% {
+    background: white;
+    box-shadow:
+      0 0 20px rgba(255, 255, 255, 0.8),
+      0 0 40px rgba(255, 255, 255, 0.6);
+  }
+
+  29%,
+  100% {
+    background: var(--color-bg);
+    box-shadow: none;
+  }
+}
+
+@keyframes dotGlowSecond {
+
+  0%,
+  57% {
+    background: var(--color-bg);
+    box-shadow: none;
+  }
+
+  58%,
+  78% {
+    background: white;
+    box-shadow:
+      0 0 20px rgba(255, 255, 255, 0.8),
+      0 0 40px rgba(255, 255, 255, 0.6);
+  }
+
+  79%,
+  100% {
+    background: var(--color-bg);
+    box-shadow: none;
+  }
+}
+
+/* Progress Line - removed to keep it simple */
+.timeline-line-progress {
+  display: none;
+}
+
+/* Remove arrow */
 .timeline-arrow {
   display: none;
 }
@@ -964,6 +1043,7 @@ section {
 @media (max-width: 768px) {
   .timeline-item {
     gap: var(--space-m);
+    margin-bottom: var(--space-xl);
   }
 
   .timeline-degree {
@@ -977,6 +1057,8 @@ section {
 
   .timeline-line {
     left: 9px;
+    top: 28px;
+    height: calc(100% - 56px);
   }
 
   .timeline-light {
