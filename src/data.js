@@ -85,5 +85,12 @@ export const projects = [
     description: "Professional company profile website for a premier maritime support company, showcasing their fleet including the SS Barakuda vessel and comprehensive offshore logistics services.",
     link: "https://project-taka.vercel.app/index.html",
     image: "/assets/taka-hydrocore.png"
+  },
+  {
+    id: 4,
+    title: "BantuTugas",
+    description: "Platform kolaboratif untuk posting tugas dan mendapatkan bantuan dari komunitas. Sistem pembayaran terintegrasi dengan Xendit memungkinkan pengguna mendapatkan kompensasi atas bantuan yang diberikan.",
+    link: "https://bantutugas-xi.vercel.app/",
+    image: "/assets/bantutugas.png"
   }
 ];
