@@ -83,7 +83,7 @@ function renderSkills() {
   });
 }
 
-// Education Journey Rendering with Timeline
+// Education Journey Rendering with Horizontal Timeline
 function renderEducation() {
   const grid = document.getElementById('educationGrid');
   if (!grid) return;
@@ -93,10 +93,8 @@ function renderEducation() {
   const timeline = document.createElement('div');
   timeline.className = 'education-timeline';
 
-  // Reverse the education array so high school is first (bottom to top visually)
-  const reversedEducation = [...education].reverse();
-
-  reversedEducation.forEach((edu, index) => {
+  // For horizontal timeline, keep natural order (SMA on left, Kuliah on right)
+  education.forEach((edu, index) => {
     const item = document.createElement('div');
     item.className = 'timeline-item';
     item.dataset.index = index;
@@ -122,14 +120,9 @@ function renderEducation() {
   const animatedLine = document.createElement('div');
   animatedLine.className = 'timeline-line';
   animatedLine.innerHTML = `
-    <div class="timeline-line-progress"></div>
     <div class="timeline-light"></div>
   `;
   timeline.appendChild(animatedLine);
 
   grid.appendChild(timeline);
 }
-
-
-
-
